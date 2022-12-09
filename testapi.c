@@ -382,6 +382,7 @@ static void des_FILE_ptr(int no ATTRIBUTE_UNUSED, FILE *val, int nr ATTRIBUTE_UN
     if (val != NULL) fclose(val);
 }
 
+#ifdef LIBXML_DEBUG_ENABLED
 #define gen_nb_debug_FILE_ptr 2
 static FILE *gen_debug_FILE_ptr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
     return(fopen("test.out", "a+"));
@@ -389,6 +390,7 @@ static FILE *gen_debug_FILE_ptr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED
 static void des_debug_FILE_ptr(int no ATTRIBUTE_UNUSED, FILE *val, int nr ATTRIBUTE_UNUSED) {
     if (val != NULL) fclose(val);
 }
+#endif
 
 #define gen_nb_const_xmlChar_ptr 5
 
@@ -737,7 +739,8 @@ static void des_xmlSchemaValidCtxtPtr(int no ATTRIBUTE_UNUSED, xmlSchemaValidCtx
 
 #define gen_nb_xmlHashDeallocator 2
 static void
-test_xmlHashDeallocator(void *payload ATTRIBUTE_UNUSED, xmlChar *name ATTRIBUTE_UNUSED) {
+test_xmlHashDeallocator(void *payload ATTRIBUTE_UNUSED,
+                        const xmlChar *name ATTRIBUTE_UNUSED) {
 }
 
 static xmlHashDeallocator gen_xmlHashDeallocator(int no, int nr ATTRIBUTE_UNUSED) {
@@ -2842,7 +2845,7 @@ test_htmlDocContentDumpFormatOutput(void) {
     int n_buf;
     xmlDocPtr cur; /* the document */
     int n_cur;
-    char * encoding; /* the encoding string */
+    char * encoding; /* the encoding string (unused) */
     int n_encoding;
     int format; /* should formatting spaces been added */
     int n_format;
@@ -2895,7 +2898,7 @@ test_htmlDocContentDumpOutput(void) {
     int n_buf;
     xmlDocPtr cur; /* the document */
     int n_cur;
-    char * encoding; /* the encoding string */
+    char * encoding; /* the encoding string (unused) */
     int n_encoding;
 
     for (n_buf = 0;n_buf < gen_nb_xmlOutputBufferPtr;n_buf++) {
@@ -3396,7 +3399,7 @@ test_htmlNodeDumpFormatOutput(void) {
     int n_doc;
     xmlNodePtr cur; /* the current node */
     int n_cur;
-    char * encoding; /* the encoding string */
+    char * encoding; /* the encoding string (unused) */
     int n_encoding;
     int format; /* should formatting spaces been added */
     int n_format;
@@ -3456,7 +3459,7 @@ test_htmlNodeDumpOutput(void) {
     int n_doc;
     xmlNodePtr cur; /* the current node */
     int n_cur;
-    char * encoding; /* the encoding string */
+    char * encoding; /* the encoding string (unused) */
     int n_encoding;
 
     for (n_buf = 0;n_buf < gen_nb_xmlOutputBufferPtr;n_buf++) {
@@ -5449,7 +5452,7 @@ test_xmlC14NDocSave(void) {
     int n_with_comments;
     const char * filename; /* the filename to store canonical XML image */
     int n_filename;
-    int compression; /* the compression level (zlib requred): -1 - libxml default, 0 - uncompressed, >0 - compression level */
+    int compression; /* the compression level (zlib required): -1 - libxml default, 0 - uncompressed, >0 - compression level */
     int n_compression;
 
     for (n_doc = 0;n_doc < gen_nb_xmlDocPtr;n_doc++) {
@@ -7510,13 +7513,6 @@ test_xmlLsOneNode(void) {
 }
 
 
-#define gen_nb_char_ptr 1
-static char * gen_char_ptr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_char_ptr(int no ATTRIBUTE_UNUSED, char * val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-
 static int
 test_xmlShell(void) {
     int test_ret = 0;
@@ -7526,6 +7522,13 @@ test_xmlShell(void) {
     return(test_ret);
 }
 
+
+#define gen_nb_char_ptr 1
+static char * gen_char_ptr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_char_ptr(int no ATTRIBUTE_UNUSED, char * val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
 
 static int
 test_xmlShellBase(void) {
@@ -8692,7 +8695,7 @@ test_xmlCharEncCloseFunc(void) {
 
     int mem_base;
     int ret_val;
-    xmlCharEncodingHandler * handler; /* char enconding transformation data structure */
+    xmlCharEncodingHandler * handler; /* char encoding transformation data structure */
     int n_handler;
 
     for (n_handler = 0;n_handler < gen_nb_xmlCharEncodingHandler_ptr;n_handler++) {
@@ -8724,7 +8727,7 @@ test_xmlCharEncFirstLine(void) {
 
     int mem_base;
     int ret_val;
-    xmlCharEncodingHandler * handler; /* char enconding transformation data structure */
+    xmlCharEncodingHandler * handler; /* char encoding transformation data structure */
     int n_handler;
     xmlBufferPtr out; /* an xmlBuffer for the output. */
     int n_out;
@@ -8816,7 +8819,7 @@ test_xmlCharEncOutFunc(void) {
 
     int mem_base;
     int ret_val;
-    xmlCharEncodingHandler * handler; /* char enconding transformation data structure */
+    xmlCharEncodingHandler * handler; /* char encoding transformation data structure */
     int n_handler;
     xmlBufferPtr out; /* an xmlBuffer for the output. */
     int n_out;
@@ -9333,13 +9336,6 @@ test_xmlCleanupPredefinedEntities(void) {
 }
 
 
-#define gen_nb_xmlEntitiesTablePtr 1
-static xmlEntitiesTablePtr gen_xmlEntitiesTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlEntitiesTablePtr(int no ATTRIBUTE_UNUSED, xmlEntitiesTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-
 static int
 test_xmlCopyEntitiesTable(void) {
     int test_ret = 0;
@@ -9359,6 +9355,13 @@ test_xmlCreateEntitiesTable(void) {
     return(test_ret);
 }
 
+
+#define gen_nb_xmlEntitiesTablePtr 1
+static xmlEntitiesTablePtr gen_xmlEntitiesTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_xmlEntitiesTablePtr(int no ATTRIBUTE_UNUSED, xmlEntitiesTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
 
 static int
 test_xmlDumpEntitiesTable(void) {
@@ -9983,6 +9986,43 @@ test_xmlHashCreateDict(void) {
 
 
     /* missing type support */
+    return(test_ret);
+}
+
+
+static int
+test_xmlHashDefaultDeallocator(void) {
+    int test_ret = 0;
+
+    int mem_base;
+    void * entry; /* the hash table entry */
+    int n_entry;
+    xmlChar * name; /* the entry's name */
+    int n_name;
+
+    for (n_entry = 0;n_entry < gen_nb_void_ptr;n_entry++) {
+    for (n_name = 0;n_name < gen_nb_const_xmlChar_ptr;n_name++) {
+        mem_base = xmlMemBlocks();
+        entry = gen_void_ptr(n_entry, 0);
+        name = gen_const_xmlChar_ptr(n_name, 1);
+
+        xmlHashDefaultDeallocator(entry, (const xmlChar *)name);
+        call_tests++;
+        des_void_ptr(n_entry, entry, 0);
+        des_const_xmlChar_ptr(n_name, (const xmlChar *)name, 1);
+        xmlResetLastError();
+        if (mem_base != xmlMemBlocks()) {
+            printf("Leak of %d blocks found in xmlHashDefaultDeallocator",
+	           xmlMemBlocks() - mem_base);
+	    test_ret++;
+            printf(" %d", n_entry);
+            printf(" %d", n_name);
+            printf("\n");
+        }
+    }
+    }
+    function_tests++;
+
     return(test_ret);
 }
 
@@ -10719,13 +10759,14 @@ static int
 test_hash(void) {
     int test_ret = 0;
 
-    if (quiet == 0) printf("Testing hash : 16 of 24 functions ...\n");
+    if (quiet == 0) printf("Testing hash : 17 of 25 functions ...\n");
     test_ret += test_xmlHashAddEntry();
     test_ret += test_xmlHashAddEntry2();
     test_ret += test_xmlHashAddEntry3();
     test_ret += test_xmlHashCopy();
     test_ret += test_xmlHashCreate();
     test_ret += test_xmlHashCreateDict();
+    test_ret += test_xmlHashDefaultDeallocator();
     test_ret += test_xmlHashLookup();
     test_ret += test_xmlHashLookup2();
     test_ret += test_xmlHashLookup3();
@@ -13572,9 +13613,9 @@ test_xmlParseBalancedChunkMemory(void) {
 #ifdef LIBXML_SAX1_ENABLED
     int mem_base;
     int ret_val;
-    xmlDocPtr doc; /* the document the chunk pertains to */
+    xmlDocPtr doc; /* the document the chunk pertains to (must not be NULL) */
     int n_doc;
-    xmlSAXHandlerPtr sax; /* the SAX handler bloc (possibly NULL) */
+    xmlSAXHandlerPtr sax; /* the SAX handler block (possibly NULL) */
     int n_sax;
     void * user_data; /* The user data returned on SAX callbacks (possibly NULL) */
     int n_user_data;
@@ -13648,9 +13689,9 @@ test_xmlParseBalancedChunkMemoryRecover(void) {
 #ifdef LIBXML_SAX1_ENABLED
     int mem_base;
     int ret_val;
-    xmlDocPtr doc; /* the document the chunk pertains to */
+    xmlDocPtr doc; /* the document the chunk pertains to (must not be NULL) */
     int n_doc;
-    xmlSAXHandlerPtr sax; /* the SAX handler bloc (possibly NULL) */
+    xmlSAXHandlerPtr sax; /* the SAX handler block (possibly NULL) */
     int n_sax;
     void * user_data; /* The user data returned on SAX callbacks (possibly NULL) */
     int n_user_data;
@@ -14026,7 +14067,7 @@ test_xmlParseExternalEntity(void) {
     int ret_val;
     xmlDocPtr doc; /* the document the chunk pertains to */
     int n_doc;
-    xmlSAXHandlerPtr sax; /* the SAX handler bloc (possibly NULL) */
+    xmlSAXHandlerPtr sax; /* the SAX handler block (possibly NULL) */
     int n_sax;
     void * user_data; /* The user data returned on SAX callbacks (possibly NULL) */
     int n_user_data;
@@ -16119,7 +16160,7 @@ test_xmlErrMemory(void) {
     int mem_base;
     xmlParserCtxtPtr ctxt; /* an XML parser context */
     int n_ctxt;
-    char * extra; /* extra informations */
+    char * extra; /* extra information */
     int n_extra;
 
     for (n_ctxt = 0;n_ctxt < gen_nb_xmlParserCtxtPtr;n_ctxt++) {
@@ -18106,16 +18147,6 @@ test_xmlSchematronNewParserCtxt(void) {
     return(test_ret);
 }
 
-#ifdef LIBXML_SCHEMATRON_ENABLED
-
-#define gen_nb_xmlSchematronPtr 1
-static xmlSchematronPtr gen_xmlSchematronPtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlSchematronPtr(int no ATTRIBUTE_UNUSED, xmlSchematronPtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-#endif
-
 
 static int
 test_xmlSchematronNewValidCtxt(void) {
@@ -18126,19 +18157,19 @@ test_xmlSchematronNewValidCtxt(void) {
     return(test_ret);
 }
 
-#ifdef LIBXML_SCHEMATRON_ENABLED
-
-#define gen_nb_xmlSchematronParserCtxtPtr 1
-static xmlSchematronParserCtxtPtr gen_xmlSchematronParserCtxtPtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlSchematronParserCtxtPtr(int no ATTRIBUTE_UNUSED, xmlSchematronParserCtxtPtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-#endif
-
 
 static int
 test_xmlSchematronParse(void) {
+    int test_ret = 0;
+
+
+    /* missing type support */
+    return(test_ret);
+}
+
+
+static int
+test_xmlSchematronSetValidStructuredErrors(void) {
     int test_ret = 0;
 
 
@@ -18158,16 +18189,6 @@ static void des_xmlSchematronValidCtxtPtr(int no ATTRIBUTE_UNUSED, xmlSchematron
 
 
 static int
-test_xmlSchematronSetValidStructuredErrors(void) {
-    int test_ret = 0;
-
-
-    /* missing type support */
-    return(test_ret);
-}
-
-
-static int
 test_xmlSchematronValidateDoc(void) {
     int test_ret = 0;
 
@@ -18176,7 +18197,7 @@ test_xmlSchematronValidateDoc(void) {
     int ret_val;
     xmlSchematronValidCtxtPtr ctxt; /* the schema validation context */
     int n_ctxt;
-    xmlDocPtr instance; /* the document instace tree */
+    xmlDocPtr instance; /* the document instance tree */
     int n_instance;
 
     for (n_ctxt = 0;n_ctxt < gen_nb_xmlSchematronValidCtxtPtr;n_ctxt++) {
@@ -18625,13 +18646,6 @@ test_xmlBufShrink(void) {
     return(test_ret);
 }
 
-
-#define gen_nb_const_xmlBufPtr 1
-static xmlBufPtr gen_const_xmlBufPtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_const_xmlBufPtr(int no ATTRIBUTE_UNUSED, const xmlBufPtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
 
 static int
 test_xmlBufUse(void) {
@@ -23256,7 +23270,7 @@ test_xmlSaveFileTo(void) {
     int n_buf;
     xmlDocPtr cur; /* the document */
     int n_cur;
-    char * encoding; /* the encoding if any assuming the I/O layer handles the trancoding */
+    char * encoding; /* the encoding if any assuming the I/O layer handles the transcoding */
     int n_encoding;
 
     for (n_buf = 0;n_buf < gen_nb_xmlOutputBufferPtr;n_buf++) {
@@ -23408,7 +23422,7 @@ test_xmlSaveFormatFileTo(void) {
     int n_buf;
     xmlDocPtr cur; /* the document */
     int n_cur;
-    char * encoding; /* the encoding if any assuming the I/O layer handles the trancoding */
+    char * encoding; /* the encoding if any assuming the I/O layer handles the transcoding */
     int n_encoding;
     int format; /* should formatting spaces been added */
     int n_format;
@@ -25061,13 +25075,6 @@ test_xmlAddRef(void) {
 }
 
 
-#define gen_nb_xmlAttributeTablePtr 1
-static xmlAttributeTablePtr gen_xmlAttributeTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlAttributeTablePtr(int no ATTRIBUTE_UNUSED, xmlAttributeTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-
 static int
 test_xmlCopyAttributeTable(void) {
     int test_ret = 0;
@@ -25149,13 +25156,6 @@ test_xmlCopyElementContent(void) {
 }
 
 
-#define gen_nb_xmlElementTablePtr 1
-static xmlElementTablePtr gen_xmlElementTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlElementTablePtr(int no ATTRIBUTE_UNUSED, xmlElementTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-
 static int
 test_xmlCopyElementTable(void) {
     int test_ret = 0;
@@ -25175,13 +25175,6 @@ test_xmlCopyEnumeration(void) {
     return(test_ret);
 }
 
-
-#define gen_nb_xmlNotationTablePtr 1
-static xmlNotationTablePtr gen_xmlNotationTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlNotationTablePtr(int no ATTRIBUTE_UNUSED, xmlNotationTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
 
 static int
 test_xmlCopyNotationTable(void) {
@@ -25248,6 +25241,13 @@ test_xmlDumpAttributeDecl(void) {
     return(test_ret);
 }
 
+
+#define gen_nb_xmlAttributeTablePtr 1
+static xmlAttributeTablePtr gen_xmlAttributeTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_xmlAttributeTablePtr(int no ATTRIBUTE_UNUSED, xmlAttributeTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
 
 static int
 test_xmlDumpAttributeTable(void) {
@@ -25334,6 +25334,13 @@ test_xmlDumpElementDecl(void) {
 }
 
 
+#define gen_nb_xmlElementTablePtr 1
+static xmlElementTablePtr gen_xmlElementTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_xmlElementTablePtr(int no ATTRIBUTE_UNUSED, xmlElementTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
+
 static int
 test_xmlDumpElementTable(void) {
     int test_ret = 0;
@@ -25418,6 +25425,13 @@ test_xmlDumpNotationDecl(void) {
     return(test_ret);
 }
 
+
+#define gen_nb_xmlNotationTablePtr 1
+static xmlNotationTablePtr gen_xmlNotationTablePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_xmlNotationTablePtr(int no ATTRIBUTE_UNUSED, xmlNotationTablePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
 
 static int
 test_xmlDumpNotationTable(void) {
@@ -29226,6 +29240,33 @@ test_xmlPopInputCallbacks(void) {
 
 
 static int
+test_xmlPopOutputCallbacks(void) {
+    int test_ret = 0;
+
+#if defined(LIBXML_OUTPUT_ENABLED)
+    int mem_base;
+    int ret_val;
+
+        mem_base = xmlMemBlocks();
+
+        ret_val = xmlPopOutputCallbacks();
+        desret_int(ret_val);
+        call_tests++;
+        xmlResetLastError();
+        if (mem_base != xmlMemBlocks()) {
+            printf("Leak of %d blocks found in xmlPopOutputCallbacks",
+	           xmlMemBlocks() - mem_base);
+	    test_ret++;
+            printf("\n");
+        }
+    function_tests++;
+#endif
+
+    return(test_ret);
+}
+
+
+static int
 test_xmlRegisterDefaultInputCallbacks(void) {
     int test_ret = 0;
 
@@ -29301,7 +29342,7 @@ static int
 test_xmlIO(void) {
     int test_ret = 0;
 
-    if (quiet == 0) printf("Testing xmlIO : 40 of 50 functions ...\n");
+    if (quiet == 0) printf("Testing xmlIO : 41 of 51 functions ...\n");
     test_ret += test_xmlAllocOutputBuffer();
     test_ret += test_xmlAllocParserInputBuffer();
     test_ret += test_xmlCheckFilename();
@@ -29342,6 +29383,7 @@ test_xmlIO(void) {
     test_ret += test_xmlParserInputBufferPush();
     test_ret += test_xmlParserInputBufferRead();
     test_ret += test_xmlPopInputCallbacks();
+    test_ret += test_xmlPopOutputCallbacks();
     test_ret += test_xmlRegisterDefaultInputCallbacks();
     test_ret += test_xmlRegisterDefaultOutputCallbacks();
     test_ret += test_xmlRegisterHTTPPostCallbacks();
@@ -29350,16 +29392,6 @@ test_xmlIO(void) {
 	printf("Module xmlIO: %d errors\n", test_ret);
     return(test_ret);
 }
-#ifdef LIBXML_AUTOMATA_ENABLED
-
-#define gen_nb_xmlAutomataPtr 1
-static xmlAutomataPtr gen_xmlAutomataPtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlAutomataPtr(int no ATTRIBUTE_UNUSED, xmlAutomataPtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-#endif
-
 
 static int
 test_xmlAutomataCompile(void) {
@@ -29379,6 +29411,16 @@ test_xmlAutomataGetInitState(void) {
     /* missing type support */
     return(test_ret);
 }
+
+#ifdef LIBXML_AUTOMATA_ENABLED
+
+#define gen_nb_xmlAutomataPtr 1
+static xmlAutomataPtr gen_xmlAutomataPtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_xmlAutomataPtr(int no ATTRIBUTE_UNUSED, xmlAutomataPtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
+#endif
 
 
 static int
@@ -29413,16 +29455,6 @@ test_xmlAutomataIsDeterminist(void) {
 
     return(test_ret);
 }
-
-#ifdef LIBXML_AUTOMATA_ENABLED
-
-#define gen_nb_xmlAutomataStatePtr 1
-static xmlAutomataStatePtr gen_xmlAutomataStatePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlAutomataStatePtr(int no ATTRIBUTE_UNUSED, xmlAutomataStatePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-#endif
 
 
 static int
@@ -29591,6 +29623,16 @@ test_xmlAutomataNewTransition2(void) {
     /* missing type support */
     return(test_ret);
 }
+
+#ifdef LIBXML_AUTOMATA_ENABLED
+
+#define gen_nb_xmlAutomataStatePtr 1
+static xmlAutomataStatePtr gen_xmlAutomataStatePtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_xmlAutomataStatePtr(int no ATTRIBUTE_UNUSED, xmlAutomataStatePtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
+#endif
 
 
 static int
@@ -33869,16 +33911,6 @@ test_xmlRegExecPushString2(void) {
     return(test_ret);
 }
 
-#ifdef LIBXML_REGEXP_ENABLED
-
-#define gen_nb_xmlRegexpPtr 1
-static xmlRegexpPtr gen_xmlRegexpPtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlRegexpPtr(int no ATTRIBUTE_UNUSED, xmlRegexpPtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-#endif
-
 
 static int
 test_xmlRegNewExecCtxt(void) {
@@ -33898,6 +33930,16 @@ test_xmlRegexpCompile(void) {
     /* missing type support */
     return(test_ret);
 }
+
+#ifdef LIBXML_REGEXP_ENABLED
+
+#define gen_nb_xmlRegexpPtr 1
+static xmlRegexpPtr gen_xmlRegexpPtr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+    return(NULL);
+}
+static void des_xmlRegexpPtr(int no ATTRIBUTE_UNUSED, xmlRegexpPtr val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
+}
+#endif
 
 
 static int
@@ -34228,27 +34270,27 @@ test_xmlSaveTree(void) {
     long ret_val;
     xmlSaveCtxtPtr ctxt; /* a document saving context */
     int n_ctxt;
-    xmlNodePtr node; /* the top node of the subtree to save */
-    int n_node;
+    xmlNodePtr cur; /*  */
+    int n_cur;
 
     for (n_ctxt = 0;n_ctxt < gen_nb_xmlSaveCtxtPtr;n_ctxt++) {
-    for (n_node = 0;n_node < gen_nb_xmlNodePtr;n_node++) {
+    for (n_cur = 0;n_cur < gen_nb_xmlNodePtr;n_cur++) {
         mem_base = xmlMemBlocks();
         ctxt = gen_xmlSaveCtxtPtr(n_ctxt, 0);
-        node = gen_xmlNodePtr(n_node, 1);
+        cur = gen_xmlNodePtr(n_cur, 1);
 
-        ret_val = xmlSaveTree(ctxt, node);
+        ret_val = xmlSaveTree(ctxt, cur);
         desret_long(ret_val);
         call_tests++;
         des_xmlSaveCtxtPtr(n_ctxt, ctxt, 0);
-        des_xmlNodePtr(n_node, node, 1);
+        des_xmlNodePtr(n_cur, cur, 1);
         xmlResetLastError();
         if (mem_base != xmlMemBlocks()) {
             printf("Leak of %d blocks found in xmlSaveTree",
 	           xmlMemBlocks() - mem_base);
 	    test_ret++;
             printf(" %d", n_ctxt);
-            printf(" %d", n_node);
+            printf(" %d", n_cur);
             printf("\n");
         }
     }
@@ -34622,16 +34664,6 @@ test_xmlSchemaParse(void) {
     /* missing type support */
     return(test_ret);
 }
-
-#ifdef LIBXML_SCHEMAS_ENABLED
-
-#define gen_nb_xmlSAXHandlerPtr_ptr 1
-static xmlSAXHandlerPtr * gen_xmlSAXHandlerPtr_ptr(int no ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-    return(NULL);
-}
-static void des_xmlSAXHandlerPtr_ptr(int no ATTRIBUTE_UNUSED, xmlSAXHandlerPtr * val ATTRIBUTE_UNUSED, int nr ATTRIBUTE_UNUSED) {
-}
-#endif
 
 
 static int
@@ -46661,7 +46693,7 @@ test_xmlXPathContextSetCache(void) {
     int n_ctxt;
     int active; /* enables/disables (creates/frees) the cache */
     int n_active;
-    int value; /* a value with semantics dependant on @options */
+    int value; /* a value with semantics dependent on @options */
     int n_value;
     int options; /* options (currently only the value 0 is used) */
     int n_options;
